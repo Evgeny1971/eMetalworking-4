@@ -2,9 +2,25 @@
 using Aspire.Hosting;
 using eShop.AppHost;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Threading.Tasks;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowOrigin",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 builder.AddForwardedHeaders();
 
 var appInsights = builder.ExecutionContext.IsPublishMode
@@ -26,7 +42,8 @@ var identityDb = postgres.AddDatabase("identitydb");
 var orderDb = postgres.AddDatabase("orderingdb");
 var webhooksDb = postgres.AddDatabase("webhooksdb");
 
-var launchProfileName = ShouldUseHttpForEndpoints() ? "http" : "https";
+var launchProfileName1 = ShouldUseHttpForEndpoints() ? "http" : "https";
+var launchProfileName = "http";//ShouldUseHttpForEndpoints() ? "http" : "https";
 
 // Services
 
@@ -77,6 +94,13 @@ var webApp = builder.AddProject<Projects.WebApp>("webapp", launchProfileName)
     .WithReference(serviceBus)
     .WithReference(appInsights);
 
+var webMetallFactorUI = builder.AddProject<Projects.MetallFactorUI>("metallfactorui", launchProfileName)
+    .WithExternalHttpEndpoints()
+    .WithReference(basketApi)
+    .WithReference(catalogApi)
+    .WithReference(orderingApi)
+    .WithReference(serviceBus)
+    .WithReference(appInsights);
 // set to true if you want to use OpenAI
 bool useOpenAI = false;
 if (useOpenAI)
@@ -119,6 +143,8 @@ if (useOpenAI)
 
 // Wire up the callback urls (self referencing)
 webApp.WithEnvironment("CallBackUrl", webApp.GetEndpoint(launchProfileName));
+webMetallFactorUI.WithEnvironment("CallBackUrl", webMetallFactorUI.GetEndpoint(launchProfileName));
+
 webhooksClient.WithEnvironment("CallBackUrl", webhooksClient.GetEndpoint(launchProfileName));
 
 builder.Build().Run();

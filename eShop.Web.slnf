@@ -15,6 +15,7 @@
       "src\\PaymentProcessor\\PaymentProcessor.csproj",
       "src\\WebAppComponents\\WebAppComponents.csproj",
       "src\\WebApp\\WebApp.csproj",
+      "src\\MetallFactorUI\\MetallFactorUI.csproj",      
       "src\\WebhookClient\\WebhookClient.csproj",
       "src\\Webhooks.API\\Webhooks.API.csproj",
       "src\\eShop.AppHost\\eShop.AppHost.csproj",
