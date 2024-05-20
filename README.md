@@ -85,3 +85,4 @@ For more information on contributing to this repo, please read [the contribution
 
 For a closely related version of this app that is not Azure specific, please view [the dotnet/eShop](https://github.com/dotnet/eshop) repo. These two repos share some common code.
 # eMetalworking-1
+# eMetalworking-3
