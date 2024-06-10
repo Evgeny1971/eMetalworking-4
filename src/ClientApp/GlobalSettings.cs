@@ -12,7 +12,7 @@ public class GlobalSetting
 
     public GlobalSetting()
     {
-        AuthToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjE4ODQ4IiwiYXVkIjoiZVNob3BPbkF6dXJlIiwiZXhwIjoxNzE2MjM5MDIyLCJuYmYiOjE0OTMyMTI5MzYsImlhdCI6MTQ5MzIxMjkzNiwianRpIjoidW5pcXVlLWp3dC1pZCIsInN1YiI6InVzZXItaWQiLCJlbWFpbCI6Imdlbi52aW5uaWtvdkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4ifQ.VJyiC49CY0_rt0krftHOtirkAA1oa8IHFrIrVYFgmcw";
+        AuthToken = "CfDJ8BU6n4bsKT5BjNDW9nOJ1y0xSd5ka4zYDFU_QGHtygYSBGrvbJCWDWirAuBxRWuvSg-Emq27sq6e0hj9BWEgnfZkvlo1qpFFTn9to0TrGtWQJ1i26MI6vjCGbYmwTMNg2RUsWd4g2U5Hlt5v4EZ0gDc";
 
         BaseIdentityEndpoint = DefaultEndpoint;
         BaseGatewayShoppingEndpoint = DefaultEndpoint;
