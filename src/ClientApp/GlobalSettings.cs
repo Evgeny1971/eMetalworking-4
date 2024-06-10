@@ -4,7 +4,7 @@ public class GlobalSetting
 {
     public const string AzureTag = "Azure";
     public const string MockTag = "Mock";
-    public const string DefaultEndpoint = "http://YOUR_IP_OR_DNS_NAME"; // i.e.: "http://YOUR_IP" or "http://YOUR_DNS_NAME"
+    public const string DefaultEndpoint = "http://localhost:18848"; // i.e.: "http://YOUR_IP" or "http://YOUR_DNS_NAME"
 
     private string _baseIdentityEndpoint;
     private string _baseGatewayShoppingEndpoint;
@@ -12,7 +12,7 @@ public class GlobalSetting
 
     public GlobalSetting()
     {
-        AuthToken = "INSERT AUTHENTICATION TOKEN";
+        AuthToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjE4ODQ4IiwiYXVkIjoiZVNob3BPbkF6dXJlIiwiZXhwIjoxNzE2MjM5MDIyLCJuYmYiOjE0OTMyMTI5MzYsImlhdCI6MTQ5MzIxMjkzNiwianRpIjoidW5pcXVlLWp3dC1pZCIsInN1YiI6InVzZXItaWQiLCJlbWFpbCI6Imdlbi52aW5uaWtvdkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4ifQ.VJyiC49CY0_rt0krftHOtirkAA1oa8IHFrIrVYFgmcw";
 
         BaseIdentityEndpoint = DefaultEndpoint;
         BaseGatewayShoppingEndpoint = DefaultEndpoint;
