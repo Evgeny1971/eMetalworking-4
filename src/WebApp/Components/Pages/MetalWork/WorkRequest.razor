@@ -1,10 +1,11 @@
-﻿@using Microsoft.JSInterop
+﻿﻿@using Microsoft.JSInterop
 @inject NavigationManager Nav
 
 @page "/metalwork/workrequest/{id:int}"
 @page "/metalwork/workrequest"
 
 @using eShop.ServiceDefaults;
+@using eShop.WebAppComponents.Model
 
 @inject EmailService emailService
 @inject CacheService cacheService
@@ -12,7 +13,7 @@
 @* @page "/item/{itemId:int}" *@
 @rendermode InteractiveServer
 @* @inject eShop.MetallFactorUI.Services.EmailService emailService *@
-@inject ILogger<WorkRequestEntity> _logger 
+@inject ILogger<WorkRequest> _logger 
 @inject IJSRuntime JSRuntime
 
 <div class="container">
@@ -148,26 +149,8 @@
 </div>
 
 @code {
-    public class WorkRequestEntity
-    {
-        public int Id { get; set; }
-        public string? SelectedCategory { get; set; }
-        public string? SelectedBudgetRange { get; set; }
-        public int Quantity { get; set; }
-        public string? ExampleData { get; set; }
-        public string? SelectedPaymentMethod { get; set; }
-        public string? SelectedMaterialSource { get; set; }
-        public string? SelectedDeliveryOption { get; set; }
-        public DateTime DeliveryDeadline { get; set; }
-        public bool PenaltyAgreement { get; set; }
-        public bool BonusAgreement { get; set; }
-        public bool ArbitrationAgreement { get; set; }
-        public string? AdditionalInfo { get; set; }
-        public string? ShippingAddress { get; set; }
-        public string? ShippingCity { get; set; }
-        public string? ShippingState { get; set; }
-    }
-
+   
+    
     // Define your model properties here
     [Parameter]
     public int? id { get; set; }
@@ -319,6 +302,3 @@
     }
   */ 
 }
-
-
-

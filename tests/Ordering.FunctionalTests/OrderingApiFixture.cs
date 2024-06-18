@@ -4,11 +4,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Hosting;
 using NSubstitute;
+using Microsoft.Extensions.Logging;
+
 
 namespace eShop.Ordering.FunctionalTests;
 
 public sealed class OrderingApiFixture : WebApplicationFactory<Program>, IAsyncLifetime
 {
+    //private readonly ILogger<OrderingApiFixture> _logger;
     private readonly IHost _app;
 
     public IResourceBuilder<PostgresServerResource> Postgres { get; private set; }
@@ -18,6 +21,8 @@ public sealed class OrderingApiFixture : WebApplicationFactory<Program>, IAsyncL
 
     public OrderingApiFixture()
     {
+        //_logger = logger;
+        ///
         var options = new DistributedApplicationOptions { AssemblyName = typeof(OrderingApiFixture).Assembly.FullName, DisableDashboard = true };
         var appBuilder = DistributedApplication.CreateBuilder(options);
         Postgres = appBuilder.AddPostgres("OrderingDB");
@@ -34,6 +39,8 @@ public sealed class OrderingApiFixture : WebApplicationFactory<Program>, IAsyncL
                 { $"ConnectionStrings:{Postgres.Resource.Name}", _postgresConnectionString }
             });
         });
+        Console.Write($"ConnectionStrings:{Postgres.Resource.Name}, {_postgresConnectionString}");
+
         builder.ConfigureServices(services =>
         {
             services.AddSingleton<IStartupFilter>(new AutoAuthorizeStartupFilter());
